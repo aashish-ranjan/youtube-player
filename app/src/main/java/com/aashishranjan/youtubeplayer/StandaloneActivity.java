@@ -32,9 +32,12 @@ public class StandaloneActivity extends AppCompatActivity implements View.OnClic
             case R.id.btnPlayVideo:
                 intent = YouTubeStandalonePlayer.createVideoIntent(this, YoutubeActivity.YOUTUBE_API_KEY, YoutubeActivity.YOUTUBE_VIDEO_ID);
                 break;
+
             case R.id.btnPlayPlaylist:
                 intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.YOUTUBE_API_KEY, YoutubeActivity.YOUTUBE_PLAYLIST_ID);
                 break;
+
+            default:
         }
         if (intent != null) {
             startActivity(intent);
