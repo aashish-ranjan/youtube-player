@@ -14,9 +14,9 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     private static final String TAG = "YoutubeActivity";
-    private static final String YOUTUBE_API_KEY = "AIzaSyBZEH0wwwfCCCk0tgOhWQWohxNfPpxYU0M";
-    private static final String YOUTUBE_VIDEO_ID = "ElpitAfkRS4";
-    private static final String YOUTUBE_PLAYLIST_ID = "PLXtTjtWmQhg1SsviTmKkWO5n0a_-T0bnD";
+    public static final String YOUTUBE_API_KEY = "AIzaSyBZEH0wwwfCCCk0tgOhWQWohxNfPpxYU0M";
+    public static final String YOUTUBE_VIDEO_ID = "ElpitAfkRS4";
+    public static final String YOUTUBE_PLAYLIST_ID = "PLXtTjtWmQhg1SsviTmKkWO5n0a_-T0bnD";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
