@@ -37,6 +37,8 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
         Log.d(TAG, "onInitializationSuccess: provider is " + provider.getClass().toString());
         Toast.makeText(this, "YouTube Player initialized successfully", Toast.LENGTH_SHORT).show();
 
+        youTubePlayer.setPlaybackEventListener(playbackEventListener);
+        youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
         if (!wasRestored) {
             youTubePlayer.cueVideo(YOUTUBE_VIDEO_ID);
         }
@@ -57,7 +59,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
         @Override
         public void onPlaying() {
-            Toast.makeText(YoutubeActivity.this, "Nice! video is playing ok", Toast.LENGTH_SHORT).show();
+            Toast.makeText(YoutubeActivity.this, "Video is playing", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -67,7 +69,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
         @Override
         public void onStopped() {
-
+            Toast.makeText(YoutubeActivity.this, "Video has stopped", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -99,12 +101,12 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
         @Override
         public void onVideoStarted() {
-            Toast.makeText(YoutubeActivity.this, "Video has started", Toast.LENGTH_SHORT).show();
+            Toast.makeText(YoutubeActivity.this, "Nice! video is playing ok", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onVideoEnded() {
-            Toast.makeText(YoutubeActivity.this, "Congrats! You've watched another video", Toast.LENGTH_SHORT).show();
+            Toast.makeText(YoutubeActivity.this, "Congratulations! You've completed another video", Toast.LENGTH_SHORT).show();
         }
 
         @Override
