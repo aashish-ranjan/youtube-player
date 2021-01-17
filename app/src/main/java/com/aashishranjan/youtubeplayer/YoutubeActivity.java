@@ -13,6 +13,10 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
 public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
+    private static final String TAG = "YoutubeActivity";
+    private static final String YOUTUBE_API_KEY = "AIzaSyBZEH0wwwfCCCk0tgOhWQWohxNfPpxYU0M";
+    private static final String YOUTUBE_VIDEO_ID  = "ElpitAfkRS4";
+    private static final String YOUTUBE_PLAYLIST_ID = "PLXtTjtWmQhg1SsviTmKkWO5n0a_-T0bnD";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +26,10 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
         ConstraintLayout player_layout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_youtube, null);
         setContentView(player_layout);
 
-        YouTubePlayerView player = new YouTubePlayerView(this);
-        player.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        player_layout.addView(player);
+        YouTubePlayerView playerView = new YouTubePlayerView(this);
+        playerView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        playerView.initialize(YOUTUBE_API_KEY, this);
+        player_layout.addView(playerView);
     }
 
     @Override
