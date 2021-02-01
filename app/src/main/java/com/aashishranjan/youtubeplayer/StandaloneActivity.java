@@ -3,14 +3,19 @@ package com.aashishranjan.youtubeplayer;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 
 public class StandaloneActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "StandaloneActivity";
+    private static final int STANDALONE_PLAYER_LAUNCH_REQUEST_CODE = 2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,8 +46,19 @@ public class StandaloneActivity extends AppCompatActivity implements View.OnClic
 
             default:
         }
-        if (intent != null) {
-            startActivity(intent);
+
+        try {
+            if(intent != null) {
+                startActivity(intent);
+            }
+        } catch (ActivityNotFoundException e) {
+            YouTubeInitializationResult youTubeInitializationResult = YouTubeStandalonePlayer.getReturnedInitializationResult(intent);
+            if (youTubeInitializationResult.isUserRecoverableError()) {
+                youTubeInitializationResult.getErrorDialog(this, STANDALONE_PLAYER_LAUNCH_REQUEST_CODE).show();
+            } else {
+                String errorMessage = String.format("There was an error in initializing youtube standalone player (%s)", youTubeInitializationResult.toString());
+                Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
